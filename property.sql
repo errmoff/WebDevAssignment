@@ -1,11 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 04, 2019 at 12:10 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Хост: 127.0.0.1
+-- Время создания: Янв 20 2022 г., 13:29
+-- Версия сервера: 10.4.11-MariaDB
+-- Версия PHP: 7.4.3
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -18,93 +19,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `courses`
+-- База данных: `property`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Структура таблицы `categories`
 --
 
 CREATE TABLE `categories` (
   `CategoryId` int(8) NOT NULL,
-  `CategoryName` varchar(50) NOT NULL
+  `CategoryName` varchar(50) NOT NULL,
+  `CategoryImg` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `categories`
+-- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`CategoryId`, `CategoryName`) VALUES
-(1, 'Marketing'),
-(2, 'Catering'),
-(3, 'Sewing and home science'),
-(4, 'The construction and Metalworking'),
-(5, 'IT and Multimedia'),
-(6, 'Transport and logistics'),
-(7, 'Automatic'),
-(8, 'Languages'),
-(9, 'Tourism'),
-(10, 'Materials processing');
+INSERT INTO `categories` (`CategoryId`, `CategoryName`, `CategoryImg`) VALUES
+(1, 'PRIVATE HOUSES', 'https://media.rightmove.co.uk/66k/65806/79055890/65806_HAM130309_IMG_01_0001.jpg'),
+(2, 'STUDIOS', 'https://media.rightmove.co.uk/49k/48943/114281558/48943_SLH180109_IMG_04_0001.jpeg'),
+(5, '1-ROOMS FLATS', 'https://media.rightmove.co.uk/87k/86681/78267507/86681_SHP002630_IMG_00_0004.jpeg'),
+(7, '2-ROOMS FLATS', 'https://media.rightmove.co.uk/87k/86681/78267507/86681_SHP002630_IMG_02_0004.jpeg'),
+(10, '4+ ROOMS FLATS', 'https://media.rightmove.co.uk/87k/86681/78267507/86681_SHP002630_IMG_03_0001.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
---
-
-CREATE TABLE `comments` (
-  `UserId` int(8) NOT NULL,
-  `CourseId` int(8) NOT NULL,
-  `Comment` varchar(200) NOT NULL,
-  `CommentDate` varchar(50) NOT NULL,
-  `CommentId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`UserId`, `CourseId`, `Comment`, `CommentDate`, `CommentId`) VALUES
-(12, 6, 'Спасибо, очень познавательно. Учитывая то, что курсы бесплатные - это просто подарок.', '2019-11-04 12:27:55', 18),
-(11, 6, 'Интересный курс. Было интересно узнать что-то новое даже с учётом стажа программиста на JAVA 6 лет. Спасибо!', '2019-11-04 12:58:59', 21);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course`
---
-
-CREATE TABLE `course` (
-  `CourseId` int(8) NOT NULL,
-  `CategoryId` int(8) NOT NULL,
-  `CourseName` varchar(30) NOT NULL,
-  `CourseDesc` text NOT NULL,
-  `CourseTime` varchar(20) NOT NULL,
-  `CourseDate` varchar(30) NOT NULL,
-  `CourseLanguage` varchar(30) NOT NULL,
-  `CoursePlace` varchar(30) NOT NULL,
-  `CoursePrice` varchar(30) NOT NULL,
-  `StatusId` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `course`
---
-
-INSERT INTO `course` (`CourseId`, `CategoryId`, `CourseName`, `CourseDesc`, `CourseTime`, `CourseDate`, `CourseLanguage`, `CoursePlace`, `CoursePrice`, `StatusId`) VALUES
-(1, 1, 'Основы маркетинга', 'Целевая группа:\r\nПредприниматели, работники торговли и маркетинга не имеющие специального образования.\r\nTребования: среднее образование.', '40 часов', '12.09.2019 - 10.10.2019', 'RUS', 'Jõhvi', 'Бесплтано', 2),
-(2, 2, 'Технология изготовления просты', 'Участник курса, прошедший обучение:\r\n- использует сырье и инструменты, необходимые для изготовления карамели;\r\n- варит различные карамельные смеси\r\n- изготавливает карамельные украшения и формы, используя правильные и безопасные\r\nметоды работы.', '40 часов', 'Начало в Сентябре', 'RUS', 'Kutse 13, Jõhvi', 'Бесплтано', 1),
-(3, 1, 'Основы интернет-маркетинга', 'Курс для небольшого погружения в сферу маркетинга. Вы научитесь создавать группу в социальной сети, наполнять её контентом и привлекать первых потенциальных клиентов. Изучите стратегии успешных интернет-компаний, у которых можно перенять опыт и определите вектор развития собственного дела', '30 часов', '13.01.2020 - 17.02.2020', 'RUS', 'Narva', '30 Euro', 1),
-(4, 1, 'Основы маркетинга', 'Целевая группа:\r\nПредприниматели, работники торговли и маркетинга не имеющие специального образования.\r\nTребования: среднее образование.', '40 часов', '12.09.2019 - 10.10.2019', 'RUS', 'Jõhvi', '', 2),
-(5, 1, 'Основы интернет-маркетинга', 'Курс для небольшого погружения в сферу маркетинга. Вы научитесь создавать группу в социальной сети, наполнять её контентом и привлекать первых потенциальных клиентов. Изучите стратегии успешных интернет-компаний, у которых можно перенять опыт и определите вектор развития собственного дела', '30 часов', '13.01.2020 - 17.02.2020', 'RUS', 'Narva', '30 Euro', 1),
-(6, 5, 'JAVA EE', 'desc', '3 years', '11/04/2019', 'GER', 'Hamburg, Hollar Strasse 17', '', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `privileges`
+-- Структура таблицы `privileges`
 --
 
 CREATE TABLE `privileges` (
@@ -113,7 +57,7 @@ CREATE TABLE `privileges` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `privileges`
+-- Дамп данных таблицы `privileges`
 --
 
 INSERT INTO `privileges` (`PrivilegesId`, `PrivilegesName`) VALUES
@@ -124,7 +68,45 @@ INSERT INTO `privileges` (`PrivilegesId`, `PrivilegesName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status`
+-- Структура таблицы `property`
+--
+
+CREATE TABLE `property` (
+  `PropertyId` int(8) NOT NULL,
+  `CategoryId` int(8) NOT NULL,
+  `PropertyName` varchar(30) NOT NULL,
+  `PropertyImage1` varchar(200) NOT NULL DEFAULT 'assets/img/demo/property-3.jpg',
+  `PropertyImage2` varchar(200) NOT NULL,
+  `PropertyArea` int(7) NOT NULL,
+  `PropertyDesc` text NOT NULL,
+  `PropertyZonePlace` varchar(30) NOT NULL,
+  `PropertyPrice` varchar(30) NOT NULL,
+  `ContactPhone` int(11) NOT NULL,
+  `PropertyAdress` varchar(200) NOT NULL,
+  `NearestStation` varchar(100) NOT NULL,
+  `PropertyCondition` varchar(20) NOT NULL,
+  `StatusId` int(11) NOT NULL DEFAULT 1,
+  `PropertyGarages` int(2) NOT NULL,
+  `PropertyBathRooms` int(2) NOT NULL,
+  `PropertyLivingRooms` int(2) NOT NULL,
+  `PropertyBedRooms` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `property`
+--
+
+INSERT INTO `property` (`PropertyId`, `CategoryId`, `PropertyName`, `PropertyImage1`, `PropertyImage2`, `PropertyArea`, `PropertyDesc`, `PropertyZonePlace`, `PropertyPrice`, `ContactPhone`, `PropertyAdress`, `NearestStation`, `PropertyCondition`, `StatusId`, `PropertyGarages`, `PropertyBathRooms`, `PropertyLivingRooms`, `PropertyBedRooms`) VALUES
+(11, 5, 'Lichfield house', 'https://media.rightmove.co.uk/66k/65815/117053621/65815_WER012075695_IMG_01_0000.jpeg', 'https://media.rightmove.co.uk/66k/65815/117053621/65815_WER012075695_IMG_00_0000.jpeg', 213, 'No description there', '1', '199999', 2147483647, 'Westminster road 12, W21D', '', 'Used', 1, 2, 1, 1, 1),
+(13, 5, 'SALMON HOUSE', 'https://media.rightmove.co.uk/66k/65809/114916088/65809_KEN190090_IMG_00_0000.jpeg', 'https://media.rightmove.co.uk/66k/65809/114916088/65809_KEN190090_IMG_01_0002.jpeg', 402, 'Its good place', '4', '210000', 2147483647, 'Granger Street 12, E12 0F', 'Shadwell', 'Brand new', 1, 1, 1, 1, 1),
+(14, 5, 'Garfield House', 'https://media.rightmove.co.uk/66k/65815/98010533/65815_WER012054000_IMG_01_0001.jpeg', 'https://media.rightmove.co.uk/66k/65815/98010533/65815_WER012054000_IMG_19_0001.jpeg', 523, 'Yeah, here is garfild home', '1', '599999', 2147483647, 'Garfield street, W10 DF', 'Tower Bridge station', 'Used', 1, 1, 3, 1, 2),
+(15, 5, 'Sherlock House', 'https://media.rightmove.co.uk/dir/crop/10:9-16:9/222k/221522/97872269/221522_21UGS_IMG_01_0000_max_476x317.jpg', 'No', 483, 'So. Now is 5 am, I am doing this assignment. Yep, for joke I will add it here. Without jokes I have sleeping yet...', '1', '828000', 2147483647, 'Sherlock street 21, W2DFS', 'Shadwell', 'Brand new', 1, 2, 1, 1, 2),
+(16, 5, 'Stake House Residence', 'https://media.rightmove.co.uk/177k/176396/89685296/176396_1781_ROKS_IMG_01_0000.jpg', 'https://media.rightmove.co.uk/177k/176396/89685296/176396_1781_ROKS_IMG_02_0000.jpg', 213, 'Nothing', '1', '2000000', 2147483647, 'Stake Street 20, N1', 'Stake OverGround', 'Used', 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `status`
 --
 
 CREATE TABLE `status` (
@@ -133,39 +115,31 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `status`
+-- Дамп данных таблицы `status`
 --
 
 INSERT INTO `status` (`StatusId`, `StatusName`) VALUES
-(1, 'Еще не начался'),
-(2, 'В процессе'),
-(3, 'Завершен'),
-(4, 'Ушел с курса');
+(1, 'Available '),
+(2, 'Booked'),
+(3, 'Sold'),
+(4, 'No Information about status');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usercourses`
+-- Структура таблицы `userfavproperty`
 --
 
-CREATE TABLE `usercourses` (
+CREATE TABLE `userfavproperty` (
   `UserId` int(8) NOT NULL,
-  `CourseId` int(8) NOT NULL,
-  `CourseRegisterDate` varchar(30) NOT NULL
+  `PropertyId` int(8) NOT NULL,
+  `PropertyAddDate` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `usercourses`
---
-
-INSERT INTO `usercourses` (`UserId`, `CourseId`, `CourseRegisterDate`) VALUES
-(3, 1, '2019-10-28 23:07:59'),
-(12, 2, '2019-11-04 12:33:06');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
@@ -173,68 +147,63 @@ CREATE TABLE `users` (
   `UserName` varchar(30) NOT NULL,
   `UserEmail` varchar(50) NOT NULL,
   `UserPass` varchar(30) NOT NULL,
-  `PrivilegesId` int(8) NOT NULL DEFAULT '1',
+  `PrivilegesId` int(8) NOT NULL DEFAULT 1,
   `FirstName` varchar(50) NOT NULL,
   `SecondName` varchar(50) NOT NULL,
   `UserNumber` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`UserId`, `UserName`, `UserEmail`, `UserPass`, `PrivilegesId`, `FirstName`, `SecondName`, `UserNumber`) VALUES
 (1, 'Moderator', 'fec@nnet.eu', 'moderator', 2, 'Alexander', 'Shultz', '43636734'),
-(3, 'Admin', 'aleksei.ilves@ivkhk.ee', 'admin', 3, 'Alexey', 'Ilves', '55560443'),
+(3, 'Admin', 'vladimir@mail.ru', 'admin', 3, 'Vladimir', 'Pritulin', '55560443'),
 (11, 'aivanov', 'aivanov@mail.ru', 'aivanov', 1, 'Andrei', 'Ivanov', '8080032'),
-(12, 'mfedorova', 'mfedorova@gmail.com', 'mfedorova', 1, 'Maria', 'Fedorova', '56764576');
+(12, 'mfedorova', 'mfedorova@gmail.com', 'mfedorova', 1, 'Maria', 'Fedorova', '56764576'),
+(13, 'nonuser', 'nonuser', 'nonuser', 1, 'nonuser', 'nonuser', '2131312313'),
+(14, 'nonuser1', 'nonuser1', 'nonuser1', 1, 'nonuser1', 'nonuser1', 'nonuser1'),
+(15, 'valgeratsu', 'vladprit71@yandex.ru', 'Vp5510027', 1, 'Vladimir', 'Pritulin', '8372551002');
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `categories`
+-- Индексы таблицы `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`CategoryId`);
 
 --
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`CommentId`),
-  ADD KEY `CourseId` (`CourseId`),
-  ADD KEY `UserId_2` (`UserId`);
-
---
--- Indexes for table `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`CourseId`),
-  ADD KEY `CategoryId` (`CategoryId`);
-
---
--- Indexes for table `privileges`
+-- Индексы таблицы `privileges`
 --
 ALTER TABLE `privileges`
   ADD PRIMARY KEY (`PrivilegesId`);
 
 --
--- Indexes for table `status`
+-- Индексы таблицы `property`
+--
+ALTER TABLE `property`
+  ADD PRIMARY KEY (`PropertyId`),
+  ADD KEY `CategoryId` (`CategoryId`);
+
+--
+-- Индексы таблицы `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`StatusId`);
 
 --
--- Indexes for table `usercourses`
+-- Индексы таблицы `userfavproperty`
 --
-ALTER TABLE `usercourses`
-  ADD PRIMARY KEY (`UserId`,`CourseId`),
-  ADD KEY `CourseId` (`CourseId`);
+ALTER TABLE `userfavproperty`
+  ADD PRIMARY KEY (`UserId`,`PropertyId`),
+  ADD KEY `CourseId` (`PropertyId`);
 
 --
--- Indexes for table `users`
+-- Индексы таблицы `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`UserId`),
@@ -243,71 +212,58 @@ ALTER TABLE `users`
   ADD KEY `PrivilegesId` (`PrivilegesId`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `CategoryId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `CategoryId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `CommentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `course`
---
-ALTER TABLE `course`
-  MODIFY `CourseId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `privileges`
+-- AUTO_INCREMENT для таблицы `privileges`
 --
 ALTER TABLE `privileges`
   MODIFY `PrivilegesId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `status`
+-- AUTO_INCREMENT для таблицы `property`
+--
+ALTER TABLE `property`
+  MODIFY `PropertyId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT для таблицы `status`
 --
 ALTER TABLE `status`
   MODIFY `StatusId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `UserId` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `comments`
+-- Ограничения внешнего ключа таблицы `property`
 --
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `users` (`UserId`);
+ALTER TABLE `property`
+  ADD CONSTRAINT `property_ibfk_1` FOREIGN KEY (`CategoryId`) REFERENCES `categories` (`CategoryId`);
 
 --
--- Constraints for table `course`
+-- Ограничения внешнего ключа таблицы `userfavproperty`
 --
-ALTER TABLE `course`
-  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`CategoryId`) REFERENCES `categories` (`CategoryId`);
+ALTER TABLE `userfavproperty`
+  ADD CONSTRAINT `userfavproperty_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`UserId`),
+  ADD CONSTRAINT `userfavproperty_ibfk_2` FOREIGN KEY (`PropertyId`) REFERENCES `property` (`PropertyId`);
 
 --
--- Constraints for table `usercourses`
---
-ALTER TABLE `usercourses`
-  ADD CONSTRAINT `usercourses_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`UserId`),
-  ADD CONSTRAINT `usercourses_ibfk_2` FOREIGN KEY (`CourseId`) REFERENCES `course` (`CourseId`);
-
---
--- Constraints for table `users`
+-- Ограничения внешнего ключа таблицы `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PrivilegesId`) REFERENCES `privileges` (`PrivilegesId`);
